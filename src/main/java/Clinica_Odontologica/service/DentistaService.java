@@ -1,6 +1,7 @@
 package Clinica_Odontologica.service;
 
 
+import Clinica_Odontologica.dao.ConfiguracaoJDBC;
 import Clinica_Odontologica.dao.IDao;
 import Clinica_Odontologica.model.Dentista;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,10 @@ import java.util.List;
 
 @Service
 public class DentistaService {
+
+    private ConfiguracaoJDBC configuracaoJDBC;
+
+
 
     @Autowired
     IDao<Dentista> dentistaIDaoH2;

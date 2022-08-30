@@ -32,7 +32,7 @@ public class DentistaController {
         return dentistaService.buscarPorId(id);
     }
 
-    @PatchMapping
+    @PutMapping("/alterar")
     public String alterar(@RequestBody Dentista dentista) throws SQLException{
         return dentistaService.alterar(dentista);
     }
