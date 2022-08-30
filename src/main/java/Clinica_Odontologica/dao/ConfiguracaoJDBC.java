@@ -16,12 +16,6 @@ public class ConfiguracaoJDBC {
         this.senha = senha;
     }
 
-    public ConfiguracaoJDBC() {
-        this.jdbcDriver = "org.h2.Driver";
-        this.dbUrl = "jdbc:h2:~/test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'"; // Criando a tabela por um arquivo externo
-        this.usuario = "sa";
-        this.senha = "";
-    }
 
     public Connection getConnection(){
         Connection connection = null;

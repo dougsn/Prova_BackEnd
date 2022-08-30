@@ -8,7 +8,7 @@ public interface IDao<T> {
     public T salvar(T t) throws SQLException;
     public List<T> buscarTodos() throws SQLException;
     public T buscarPorId (int id) throws SQLException;
-    public void alterar(T t) throws SQLException;
-    public void excluir(int id) throws SQLException;
+    public String alterar(T t) throws SQLException;
+    public String excluir(int id) throws SQLException;
 
 }
