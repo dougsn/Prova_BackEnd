@@ -36,7 +36,7 @@ public class DentistaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Dentista>>  buscarTodos() throws SQLException {
+    public ResponseEntity<List<Dentista>> buscarTodos() throws SQLException {
 
         ResponseEntity responseEntity = null;
 

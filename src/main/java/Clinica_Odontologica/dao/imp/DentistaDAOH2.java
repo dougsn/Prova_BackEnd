@@ -18,9 +18,6 @@ import java.util.List;
 public class DentistaDAOH2 implements IDao<Dentista> {
 
     private ConfiguracaoJDBC configuracaoJDBC;
-
-
-
     final static Logger log = Logger.getLogger(DentistaDAOH2.class);
 
 
@@ -66,7 +63,7 @@ public class DentistaDAOH2 implements IDao<Dentista> {
             connection = configuracaoJDBC.getConnection();
             statement = connection.createStatement();
             ResultSet resultado = statement.executeQuery(query);
-            log.info("Buscando todos os produtos do banco");
+            log.info("Buscando todos os dentistas do banco");
 
             while(resultado.next()){
                 dentistas.add(criarObjetoDentista(resultado));
@@ -96,7 +93,7 @@ public class DentistaDAOH2 implements IDao<Dentista> {
         Dentista dentista = null;
 
         try {
-            log.info("Buscando produto por id: " + id);
+            log.info("Buscando Dentista por id: " + id);
             configuracaoJDBC = new ConfiguracaoJDBC("org.h2.Driver","jdbc:h2:~/test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'","sa","");
             connection = configuracaoJDBC.getConnection();
             statement = connection.createStatement();
@@ -137,7 +134,7 @@ public class DentistaDAOH2 implements IDao<Dentista> {
             connection.close();
         }
 
-        return "Produto alterado com sucesso!";
+        return "Dentista alterado com sucesso!";
 
 
     }
@@ -154,12 +151,12 @@ public class DentistaDAOH2 implements IDao<Dentista> {
             log.info("Abrindo conexão com o Banco de Dados");
             configuracaoJDBC = new ConfiguracaoJDBC("org.h2.Driver","jdbc:h2:~/test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'create.sql'","sa","");
             connection = configuracaoJDBC.getConnection();
-            log.info("Deletando o produto por id: " + id);
+            log.info("Deletando o Dentista por id: " + id);
             statement = connection.createStatement();
             statement.execute(SQLDelete);
 
         } catch (SQLException e){
-            log.error("Erro ao tentar deletar o produto de id: " + id);
+            log.error("Erro ao tentar deletar o Dentista de id: " + id);
             e.printStackTrace();
         } finally {
             log.info("Encerrando conexão com o Banco de Dados");
@@ -167,7 +164,7 @@ public class DentistaDAOH2 implements IDao<Dentista> {
             statement.close();
         }
 
-        return "Produto excluído com sucesso!";
+        return "Dentista excluído com sucesso!";
 
     }
 

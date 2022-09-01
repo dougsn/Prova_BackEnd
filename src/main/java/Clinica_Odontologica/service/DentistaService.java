@@ -15,8 +15,6 @@ public class DentistaService {
 
     private ConfiguracaoJDBC configuracaoJDBC;
 
-
-
     @Autowired
     IDao<Dentista> dentistaIDaoH2;
 
