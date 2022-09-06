@@ -27,7 +27,7 @@ public class DentistaController {
 
       ResponseEntity responseEntity = null;
 
-      DentistaEntity dentistaEntity1 = dentistaServiceImpl.addDentista(dentistaEntity);
+      DentistaEntity dentistaEntity1 = dentistaServiceImpl.adicionar(dentistaEntity);
 
         if(dentistaEntity1.getNome() == null || dentistaEntity1.getMatricula() == null || dentistaEntity1.getSobrenome() == null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -43,7 +43,7 @@ public class DentistaController {
         ResponseEntity responseEntity = null;
 
         List<DentistaEntity> dentistaEntities;
-        dentistaEntities = dentistaServiceImpl.findAllDentistas();
+        dentistaEntities = dentistaServiceImpl.findAll();
 
         if(dentistaEntities.size() == 0){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -59,10 +59,10 @@ public class DentistaController {
 
         ResponseEntity responseEntity = null;
 
-        if(dentistaServiceImpl.findDentistaById(id)==null){
+        if(dentistaServiceImpl.findById(id)==null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
-            responseEntity = new ResponseEntity(dentistaServiceImpl.findDentistaById(id), HttpStatus.OK);
+            responseEntity = new ResponseEntity(dentistaServiceImpl.findById(id), HttpStatus.OK);
         }
         return responseEntity;
 
@@ -73,10 +73,10 @@ public class DentistaController {
 
         ResponseEntity responseEntity = null;
 
-        if(dentistaServiceImpl.findDentistaById(dentistaEntity.getId())==null){
+        if(dentistaServiceImpl.findById(dentistaEntity.getId())==null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
-            responseEntity = new ResponseEntity(dentistaServiceImpl.atualizarDentista(dentistaEntity), HttpStatus.OK);
+            responseEntity = new ResponseEntity(dentistaServiceImpl.atualizar(dentistaEntity), HttpStatus.OK);
         }
         return responseEntity;
 
@@ -86,10 +86,10 @@ public class DentistaController {
     public ResponseEntity deleteDentista(@PathVariable Long id) throws SQLException {
         ResponseEntity responseEntity = null;
 
-        if(dentistaServiceImpl.findDentistaById(id)==null){
+        if(dentistaServiceImpl.findById(id)==null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
-            responseEntity = new ResponseEntity(dentistaServiceImpl.deleteDentista(id), HttpStatus.OK);
+            responseEntity = new ResponseEntity(dentistaServiceImpl.deletar(id), HttpStatus.OK);
         }
         return responseEntity;
     }

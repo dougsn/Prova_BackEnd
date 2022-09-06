@@ -3,14 +3,14 @@ package Clinica_Odontologica.service.impl;
 
 import Clinica_Odontologica.repository.IDentistaRepository;
 import Clinica_Odontologica.entity.DentistaEntity;
-import Clinica_Odontologica.service.IDentistaService;
+import Clinica_Odontologica.service.IClinicaService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DentistaServiceImpl implements IDentistaService<DentistaEntity> {
+public class DentistaServiceImpl implements IClinicaService<DentistaEntity> {
 
 
     private final IDentistaRepository dentistaRepository;
@@ -20,17 +20,17 @@ public class DentistaServiceImpl implements IDentistaService<DentistaEntity> {
     }
 
     @Override
-    public List<DentistaEntity> findAllDentistas() {
+    public List<DentistaEntity> findAll() {
         return dentistaRepository.findAll();
     }
 
     @Override
-    public Optional<DentistaEntity> findDentistaById(Long id) {
+    public Optional<DentistaEntity> findById(Long id) {
         return dentistaRepository.findById(id);
     }
 
     @Override
-    public DentistaEntity addDentista(DentistaEntity dentistaEntity) {
+    public DentistaEntity adicionar(DentistaEntity dentistaEntity) {
         if(dentistaEntity != null){
             return dentistaRepository.save(dentistaEntity);
         }
@@ -38,7 +38,7 @@ public class DentistaServiceImpl implements IDentistaService<DentistaEntity> {
     }
 
     @Override
-    public String deleteDentista(Long id) {
+    public String deletar(Long id) {
         if(dentistaRepository.findById(id).isPresent()){
             dentistaRepository.deleteById(id);
             return "Dentista apagado!";
@@ -47,7 +47,7 @@ public class DentistaServiceImpl implements IDentistaService<DentistaEntity> {
     }
 
     @Override
-    public String atualizarDentista(DentistaEntity dentistaEntity) {
+    public String atualizar(DentistaEntity dentistaEntity) {
         if(dentistaEntity != null && dentistaRepository.findById(dentistaEntity.getId()).isPresent()){
             dentistaRepository.saveAndFlush(dentistaEntity);
             return "Dentista atualizado!";

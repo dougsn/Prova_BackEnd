@@ -1,9 +1,7 @@
 package Clinica_Odontologica.controller;
 
 import Clinica_Odontologica.entity.PacienteEntity;
-import Clinica_Odontologica.service.IPacienteService;
 import Clinica_Odontologica.service.impl.PacienteServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +24,7 @@ public class PacienteController {
 
         ResponseEntity responseEntity = null;
 
-        PacienteEntity pacienteEntity1 = pacienteService.addPaciente(pacienteEntity);
+        PacienteEntity pacienteEntity1 = pacienteService.adicionar(pacienteEntity);
 
         if(pacienteEntity1.getNome() == null  || pacienteEntity1.getSobrenome() == null || pacienteEntity1.getEndereco() == null || pacienteEntity1.getDataAlta() == null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -42,7 +40,7 @@ public class PacienteController {
         ResponseEntity responseEntity = null;
 
         List<PacienteEntity> pacienteEntities;
-        pacienteEntities = pacienteService.findAllPacientes();
+        pacienteEntities = pacienteService.findAll();
 
         if(pacienteEntities.size() == 0){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -58,10 +56,10 @@ public class PacienteController {
 
         ResponseEntity responseEntity = null;
 
-        if(pacienteService.findPacienteById(id)==null){
+        if(pacienteService.findById(id)==null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
-            responseEntity = new ResponseEntity(pacienteService.findPacienteById(id), HttpStatus.OK);
+            responseEntity = new ResponseEntity(pacienteService.findById(id), HttpStatus.OK);
         }
         return responseEntity;
 
@@ -72,10 +70,10 @@ public class PacienteController {
 
         ResponseEntity responseEntity = null;
 
-        if(pacienteService.findPacienteById(pacienteEntity.getId())==null){
+        if(pacienteService.findById(pacienteEntity.getId())==null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
-            responseEntity = new ResponseEntity(pacienteService.atualizarPaciente(pacienteEntity), HttpStatus.OK);
+            responseEntity = new ResponseEntity(pacienteService.atualizar(pacienteEntity), HttpStatus.OK);
         }
         return responseEntity;
 
@@ -85,10 +83,10 @@ public class PacienteController {
     public ResponseEntity excluir(@PathVariable Long id) throws SQLException {
         ResponseEntity responseEntity = null;
 
-        if(pacienteService.findPacienteById(id)==null){
+        if(pacienteService.findById(id)==null){
             responseEntity = new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
-            responseEntity = new ResponseEntity(pacienteService.deletePaciente(id), HttpStatus.OK);
+            responseEntity = new ResponseEntity(pacienteService.deletar(id), HttpStatus.OK);
         }
         return responseEntity;
     }
