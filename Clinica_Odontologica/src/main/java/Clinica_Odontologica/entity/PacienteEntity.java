@@ -1,4 +1,4 @@
-package Clinica_Odontologica.model;
+package Clinica_Odontologica.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 
@@ -13,9 +14,13 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Paciente {
 
-    private int id;
+@Entity
+@Table(name = "Paciente")
+public class PacienteEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String sobrenome;
     private String endereco;
