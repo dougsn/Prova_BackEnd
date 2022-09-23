@@ -1,8 +1,6 @@
 package Clinica_Odontologica.service.impl;
 
-import Clinica_Odontologica.entity.DentistaEntity;
 import Clinica_Odontologica.entity.PacienteEntity;
-import Clinica_Odontologica.repository.IDentistaRepository;
 import Clinica_Odontologica.repository.IPacienteRepository;
 import Clinica_Odontologica.service.IClinicaService;
 import org.springframework.stereotype.Service;
@@ -31,27 +29,20 @@ public class PacienteServiceImpl implements IClinicaService<PacienteEntity> {
 
     @Override
     public PacienteEntity adicionar(PacienteEntity pacienteEntity) {
-        if(pacienteEntity != null){
-            return pacienteRepository.save(pacienteEntity);
-        }
-        return new PacienteEntity();
+        return pacienteRepository.save(pacienteEntity);
     }
 
     @Override
     public String deletar(Long id) {
-        if(pacienteRepository.findById(id).isPresent()){
-            pacienteRepository.deleteById(id);
-            return "Paciente apagado!";
-        }
-        return "Paciente não encontrado.";
+
+        pacienteRepository.deleteById(id);
+        return "Paciente apagado!";
     }
 
     @Override
     public String atualizar(PacienteEntity pacienteEntity) {
-        if(pacienteEntity != null && pacienteRepository.findById(pacienteEntity.getId()).isPresent()){
-            pacienteRepository.saveAndFlush(pacienteEntity);
-            return "Paciente atualizado!";
-        }
-        return "Não foi possível atualizar o paciente.";
+
+        pacienteRepository.saveAndFlush(pacienteEntity);
+        return "Paciente Atualizado";
     }
 }

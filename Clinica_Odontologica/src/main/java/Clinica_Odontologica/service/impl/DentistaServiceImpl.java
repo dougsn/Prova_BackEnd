@@ -1,6 +1,7 @@
 package Clinica_Odontologica.service.impl;
 
 
+import Clinica_Odontologica.exceptions.ResourceNotFoundException;
 import Clinica_Odontologica.repository.IDentistaRepository;
 import Clinica_Odontologica.entity.DentistaEntity;
 import Clinica_Odontologica.service.IClinicaService;
@@ -31,27 +32,18 @@ public class DentistaServiceImpl implements IClinicaService<DentistaEntity> {
 
     @Override
     public DentistaEntity adicionar(DentistaEntity dentistaEntity) {
-        if(dentistaEntity != null){
-            return dentistaRepository.save(dentistaEntity);
-        }
-        return new DentistaEntity();
+        return dentistaRepository.save(dentistaEntity);
     }
 
     @Override
     public String deletar(Long id) {
-        if(dentistaRepository.findById(id).isPresent()){
-            dentistaRepository.deleteById(id);
-            return "Dentista apagado!";
-        }
-        return "Dentista não encontrado.";
+        dentistaRepository.deleteById(id);
+        return "Dentista apagado!";
     }
 
     @Override
     public String atualizar(DentistaEntity dentistaEntity) {
-        if(dentistaEntity != null && dentistaRepository.findById(dentistaEntity.getId()).isPresent()){
-            dentistaRepository.saveAndFlush(dentistaEntity);
-            return "Dentista atualizado!";
-        }
-        return "Não foi possível atualizar o dentista.";
+        dentistaRepository.saveAndFlush(dentistaEntity);
+        return "Dentista atualizado!";
     }
 }

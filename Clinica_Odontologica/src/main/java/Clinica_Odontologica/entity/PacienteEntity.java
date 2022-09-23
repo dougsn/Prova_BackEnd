@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -19,12 +21,16 @@ import java.time.LocalDate;
 @Table(name = "Paciente")
 public class PacienteEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "paciente_sequence", sequenceName = "paciente_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paciente_sequence")
     private Long id;
     private String nome;
     private String sobrenome;
-    private String endereco;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private LocalDate dataAlta;
+
+    @OneToOne(mappedBy = "pacienteEntity", fetch = FetchType.LAZY)
+    private EnderecoEntity enderecoEntity;
+
 
 }
