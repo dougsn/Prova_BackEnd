@@ -10,4 +10,6 @@ import java.util.Optional;
 @Transactional //trabalha dentro do escopo de uma transação no BD
 public interface UserRepository extends JpaRepository<AppUser, Long> {
     Optional<AppUser> findByEmail(String email);
+    Optional<AppUser> findByUsername(String username);
+
 }

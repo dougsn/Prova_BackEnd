@@ -1,6 +1,7 @@
 package Clinica_Odontologica.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -28,5 +30,10 @@ public class DentistaEntity {
     private String matricula;
     @OneToMany(mappedBy = "dentistaEntity", fetch = FetchType.LAZY)
     private Set<ConsultaEntity> consultas = new HashSet<ConsultaEntity>();
+
+    @JsonManagedReference
+    public Set<ConsultaEntity> getConsultas(){
+        return consultas;
+    }
 
 }

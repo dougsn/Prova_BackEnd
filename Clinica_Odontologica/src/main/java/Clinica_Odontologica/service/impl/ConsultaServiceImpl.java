@@ -25,7 +25,6 @@ public class ConsultaServiceImpl implements IClinicaService<ConsultaEntity> {
     }
 
 
-
     @Override
     public List<ConsultaEntity> findAll() {
         return consultaRepository.findAll();

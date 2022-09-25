@@ -1,14 +1,21 @@
 package Clinica_Odontologica.controller;
 
 
+import Clinica_Odontologica.entity.AuthenticationResponse;
 import Clinica_Odontologica.entity.ConsultaEntity;
 import Clinica_Odontologica.entity.DentistaEntity;
 import Clinica_Odontologica.exceptions.BadRequestException;
 import Clinica_Odontologica.exceptions.ResourceNotFoundException;
+import Clinica_Odontologica.jwt.JwtUtil;
+import Clinica_Odontologica.security.AppUser;
 import Clinica_Odontologica.service.impl.ConsultaServiceImpl;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -28,7 +35,6 @@ public class ConsultaController {
 
     }
 
-
     @PostMapping
     public ResponseEntity<ConsultaEntity> addConsulta(@RequestBody ConsultaEntity consultaEntity) throws BadRequestException {
 
@@ -42,18 +48,6 @@ public class ConsultaController {
 
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<ConsultaEntity> addConsulta2(@RequestBody ConsultaEntity consultaEntity) throws BadRequestException {
-
-        try {
-            log.info("Realizando a adição da consulta");
-            return ResponseEntity.ok(consultaService.adicionar(consultaEntity));
-        } catch (Exception e) {
-            log.error("Erro ao realizar a adição da consulta");
-            throw new BadRequestException("Não foi possível salvar a consulta informada.");
-        }
-
-    }
 
     @GetMapping
     public ResponseEntity<List<ConsultaEntity>> buscarTodos() throws ResourceNotFoundException {
