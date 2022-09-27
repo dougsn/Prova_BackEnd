@@ -1,7 +1,6 @@
 package Clinica_Odontologica.service.impl;
 
 
-import Clinica_Odontologica.exceptions.ResourceNotFoundException;
 import Clinica_Odontologica.repository.IDentistaRepository;
 import Clinica_Odontologica.entity.DentistaEntity;
 import Clinica_Odontologica.service.IClinicaService;
@@ -17,6 +16,7 @@ public class DentistaServiceImpl implements IClinicaService<DentistaEntity> {
     private final IDentistaRepository dentistaRepository;
 
     public DentistaServiceImpl(IDentistaRepository dentistaRepository) {
+
         this.dentistaRepository = dentistaRepository;
     }
 
